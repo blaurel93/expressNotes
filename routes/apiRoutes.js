@@ -11,4 +11,6 @@ module.exports = function (app) {
         noteData.push(req.body);
         res.json(true);
     });
+
+    app.delete("")
 }
