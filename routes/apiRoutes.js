@@ -16,10 +16,17 @@ module.exports = function (app) {
     // });
     // app.delete("")
     app.delete("/api/notes/:id", function (req, res) {
-        // console.log(req.body);
-        noteData.splice(req.body);
-        res.json(true);
-    });
+        var chosen = req.params.id;
+        for (let i = 0; i < noteData.length; i++) {
+            if (chosen === noteData[i].id) {
+                noteData.splice(i, 1);
+            }
+        }
+        for (let i = 0; i < noteData.length; i++) {
+            noteData[i].id = i.toString();
+        }
+        res.json({ ok: true })
+    })
 
 
 }
