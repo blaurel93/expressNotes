@@ -16,9 +16,9 @@ module.exports = function (app) {
     // });
     // app.delete("")
     app.delete("/api/notes/:id", function (req, res) {
-        var chosen = req.params.id;
+        let deleteThis = req.params.id;
         for (let i = 0; i < noteData.length; i++) {
-            if (chosen === noteData[i].id) {
+            if (deleteThis === noteData[i].id) {
                 noteData.splice(i, 1);
             }
         }
