@@ -11,6 +11,15 @@ module.exports = function (app) {
         noteData.push(req.body);
         res.json(true);
     });
+    // app.delete("/api/notes/0", function (req, res) {
+    //     res.sendFile(path.join(__dirname, "../db/db.json"))
+    // });
+    // app.delete("")
+    app.delete("/api/notes/:id", function (req, res) {
+        // console.log(req.body);
+        noteData.splice(req.body);
+        res.json(true);
+    });
 
-    app.delete("")
+
 }

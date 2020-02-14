@@ -3,9 +3,10 @@ var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
-
+// var $noteId = $("#noteId");
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
+
 
 // A function for getting all notes from the db
 var getNotes = function () {
@@ -24,12 +25,9 @@ var saveNote = function (note) {
     data: note,
     method: "POST"
   })
-  // .then(res => {
-  //   id +=
-  //     deleteNote(id);
-  // })
-};
 
+};
+// var id = parseInt(noteCount);
 // A function for deleting a note from the db
 var deleteNote = function (id) {
   return $.ajax({
@@ -62,14 +60,15 @@ var handleNoteSave = function () {
   var newNote = {
     title: $noteTitle.val(),
     text: $noteText.val(),
-    id: noteCount
+    id: parseInt(noteCount)
   };
-
+  // console.log(noteCount)
   saveNote(newNote).then(function (data) {
     getAndRenderNotes();
     renderActiveNote();
     noteCount++;
     console.log(newNote);
+    // console.log(noteCount);
   });
 };
 
@@ -79,15 +78,16 @@ var handleNoteDelete = function (event) {
   console.log("made it here");
   event.stopPropagation();
   console.log(activeNote.id)
-  console.log(note.id)
+  // console.log(note.id)
   var note = $(this)
     .parent(".list-group-item")
     .data();
-
-  if (activeNote.id == note.id) {
+  console.log(note);
+  if (activeNote.id == noteCount) {
     activeNote = {};
     console.log(activeNote.id)
-    console.log(note.id)
+    // console.log(note.id)
+    console.log("made it to the end")
   }
 
   deleteNote(note.id).then(function () {
